@@ -16,11 +16,12 @@ struct DivisionsView: View {
         NavigationView {
             
             List(state.divisions, id: \.self.code) { division in
-                NavigationLink(destination: AbsenceView(division: division)) {
+                NavigationLink(destination: AbsenceView(absence:  division.createAbsenceOrGetExistingIfAvailable(for: currentDate))) {
                     DivisionItem(division: division)
                 }
 
             }
+            .onAppear(perform: { state.saveToFile()})
             .navigationTitle(currentDate.getShortDate())
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

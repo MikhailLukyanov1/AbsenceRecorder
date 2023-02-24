@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Student {
+class Student: Codable {
     let forename: String
     let surname: String
     let birthday: Date
@@ -17,5 +17,12 @@ class Student {
         self.surname = surname
         self.birthday = birthday
     }
+    
+    #if DEBUG
+    
+    static let example = Student(forename: "Roberto", surname: "Baggio", birthday: Date())
+    static let examples = [example]
+    
+    #endif
     
 }
